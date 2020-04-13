@@ -16,6 +16,7 @@
         <field name="logFile" column="log_file" type="string" length="100" nullable="true" unique="false" />
         <field name="priority" column="priority" type="integer" nullable="false" unique="false" />
         <field name="executeImmediately" column="execute_immediately" type="boolean" nullable="false" unique="false" />
+        <field name="once" column="once" type="boolean" nullable="false" unique="false" />
         <field name="disabled" column="disabled" type="boolean" nullable="false" unique="false" />
         <field name="locked" column="locked" type="boolean" nullable="false" unique="false" />
     </entity>

@@ -120,6 +120,12 @@ class ExecuteCommand extends Command
         foreach ($commands as $command) {
 
             $this->em->refresh($this->em->merge($command));
+
+            if ($command->isOnce()) {
+                $this->em->getRepository(ScheduledCommand::class)
+                    ->deleteCommandAfterOnce($command);
+            }
+
             if ($command->isDisabled() || $command->isLocked()) {
                 continue;
             }
@@ -181,6 +187,7 @@ class ExecuteCommand extends Command
             $scheduledCommand = $notLockedCommand;
             $scheduledCommand->setLastExecution(new \DateTime());
             $scheduledCommand->setLocked(true);
+            $scheduledCommand->setOnce(true);
             $scheduledCommand = $this->em->merge($scheduledCommand);
             $this->em->flush();
             $this->em->getConnection()->commit();
