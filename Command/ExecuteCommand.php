@@ -121,11 +121,6 @@ class ExecuteCommand extends Command
 
             $this->em->refresh($this->em->merge($command));
 
-            if ($command->isOnce()) {
-                $this->em->getRepository(ScheduledCommand::class)
-                    ->deleteCommandAfterOnce($command);
-            }
-
             if ($command->isDisabled() || $command->isLocked()) {
                 continue;
             }
@@ -258,6 +253,9 @@ class ExecuteCommand extends Command
         $scheduledCommand->setLastReturnCode($result);
         $scheduledCommand->setLocked(false);
         $scheduledCommand->setExecuteImmediately(false);
+        if ($scheduledCommand->isOnce()) {
+            $this->em->remove($scheduledCommand);
+        }
         $this->em->flush();
 
         /*

@@ -100,11 +100,4 @@ class ScheduledCommandRepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
-
-    public function deleteCommandAfterOnce(ScheduledCommand $command)
-    {
-        return $this->createQueryBuilder('command')
-            ->where('command.id = :id')
-            ->setParameter('id', $command->getId());
-    }
 }
