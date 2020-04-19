@@ -254,7 +254,7 @@ class ExecuteCommand extends Command
         $scheduledCommand->setLocked(false);
         $scheduledCommand->setExecuteImmediately(false);
         if ($scheduledCommand->isOnce()) {
-            $this->em->remove($scheduledCommand);
+            $scheduledCommand->setLocked(true);
         }
         $this->em->flush();
 
