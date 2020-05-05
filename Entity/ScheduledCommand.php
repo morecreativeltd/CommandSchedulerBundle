@@ -77,6 +77,11 @@ class ScheduledCommand
     private $locked;
 
     /**
+     * @var boolean
+     */
+    private $once;
+
+    /**
      * Init new ScheduledCommand
      */
     public function __construct()
@@ -106,6 +111,31 @@ class ScheduledCommand
         $this->id = $id;
 
         return $this;
+    }
+
+    /**
+     * @param bool $once
+     */
+    public function setOnce(bool $once): void
+    {
+        $this->once = $once;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getOnce()
+    {
+        return $this->once;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isOnce()
+    {
+        return $this->once;
     }
 
     /**

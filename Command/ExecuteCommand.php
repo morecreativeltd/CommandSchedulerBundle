@@ -120,6 +120,7 @@ class ExecuteCommand extends Command
         foreach ($commands as $command) {
 
             $this->em->refresh($this->em->merge($command));
+
             if ($command->isDisabled() || $command->isLocked()) {
                 continue;
             }
@@ -251,6 +252,9 @@ class ExecuteCommand extends Command
         $scheduledCommand->setLastReturnCode($result);
         $scheduledCommand->setLocked(false);
         $scheduledCommand->setExecuteImmediately(false);
+        if ($scheduledCommand->isOnce()) {
+            $scheduledCommand->setLocked(true);
+        }
         $this->em->flush();
 
         /*
