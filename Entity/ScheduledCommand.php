@@ -135,7 +135,7 @@ class ScheduledCommand
      */
     public function isOnce()
     {
-        return $this->getOnce();
+        return $this->once;
     }
 
     /**

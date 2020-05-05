@@ -182,7 +182,6 @@ class ExecuteCommand extends Command
             $scheduledCommand = $notLockedCommand;
             $scheduledCommand->setLastExecution(new \DateTime());
             $scheduledCommand->setLocked(true);
-//            $scheduledCommand->setOnce(true);
             $scheduledCommand = $this->em->merge($scheduledCommand);
             $this->em->flush();
             $this->em->getConnection()->commit();
