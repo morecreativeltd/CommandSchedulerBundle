@@ -27,7 +27,6 @@
         "symfony/twig-bundle": "^3.4|^4.4",
         "symfony/translation": "^3.4|^4.4",
         "symfony/form": "^3.4|^4.4",
-        "symfony/asset": "^3.4|^4.4",
         "symfony/templating": "^3.4|^4.4",
         "symfony/validator": "^3.4|^4.4"
     },
